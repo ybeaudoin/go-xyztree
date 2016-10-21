@@ -2,9 +2,9 @@
 
 A demo involving all the package's functions where we
 * pick 100,000 random points from the unit cube,
-* create the corresponding 3-d tree,
+* create the corresponding *3*-d tree,
 * save the result to the JSON file "demo.json",
-* read the 3-d tree back from the above file and
+* read the *3*-d tree back from the above file and
 * test nearest-neighbord searching against brute-force searching using the Euclidean metric for 1,000 random points.
 
 ```go
