@@ -57,7 +57,7 @@ whereas *k* = 2 yields the **Euclidean** metric
 In the limit as *k* tends to infinity, we have the **Max** metric  
 ![](images/minkowski3.gif)
 
-The differences between them can be illustrated as follows. Set &#949; as the greater-than-zero value of the
+The differences between them can be illustrated as follows. Set *&#949;* as the greater-than-zero value of the
 *k*-Minkowski metric for all values of *k*. Furthermore, let P be a fixed point in R<sup>3</sup>. Then the loci of
 points Q that satisfy *L<sub>k</sub>(P,Q) = &#949;* define various nested geometrical figures. For
 *k &#8594; &#8734;*, the figure is a <u>cube</u> whereas, for *k* = 2, it's a <u>sphere</u> inscribed within the previous cube
