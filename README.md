@@ -60,8 +60,8 @@ In the limit as *k* tends to infinity, we have the **Max** metric
 The differences between them can be illustrated as follows. Set *&#949;* as the greater-than-zero value of the
 *k*-Minkowski metric for all values of *k*. Furthermore, let P be a fixed point in R<sup>3</sup>. Then the loci of
 points Q that satisfy *L<sub>k</sub>(P,Q) = &#949;* define various nested geometrical figures. For
-*k &#8594; &#8734;*, the figure is a <u>cube</u> whereas, for *k* = 2, it's a <u>sphere</u> inscribed within the previous cube
-and, for *k* = 1, it's an <u>octahedron</u> inscribed within the previous sphere. Think of this as a set of <a
+*k &#8594; &#8734;*, the figure is a *cube* whereas, for *k* = 2, it's a *sphere* inscribed within the previous cube
+and, for *k* = 1, it's an *octahedron* inscribed within the previous sphere. Think of this as a set of <a
 href="http://en.wikipedia.org/wiki/Matryoshka_doll" target="_blank">Matryoshka dolls</a> with the loci of the **Manhattan**
 metric being the innermost doll and that of the **Max** metric the outermost.
 
