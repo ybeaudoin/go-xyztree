@@ -33,6 +33,7 @@ The package exports the following:
 
 The *3*-d tree is stored as a slice of structures constituting a top-down binary node list. Each slice element contains a node's
 particulars as follows:
+
 | Field | Description |
 | --- | --- |
 |HYPERPLANE|integer axis index in the range \[0,2\] for the hyperplane: a value of -1 indicates a leaf node.|
