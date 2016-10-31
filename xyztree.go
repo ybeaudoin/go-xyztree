@@ -28,6 +28,7 @@
  *      LEFTCHILD  => integer link to the left child node: a value of -1 indicates no child node.
  *      RIGHTCHILD => integer link to the right child node: a value of -1 indicates no child node.
  * History:
+ *     v1.1.0 - October 31, 2016 - Moded JSON import & export for empty LEFTCHILD and RIGHTCHILD fields
  *     v1.0.0 - October 19, 2016 - Original release
  *============================================================================================================================*/
 package xyztree
@@ -65,7 +66,8 @@ func Export(file string, compact bool) {
  * Externals - Out : None.
  *       Functions : halt
  *         Remarks : None.
- *         History : v1.0.0 - October 13, 2016 - Original release.
+ *         History : v1.1.0 - October 31, 2016 - Moded to omit empty LEFTCHILD and RIGHTCHILD fields
+ *                   v1.0.0 - October 13, 2016 - Original release.
  */
     if len(_3dtree) == 0 { halt("there's no 3-d tree to export") }
 
@@ -80,6 +82,9 @@ func Export(file string, compact bool) {
 
     nodeData := make([]jsonNode, numNodes)
     for k, v := range _3dtree {
+        if v.HYPERPLANE == -1 {
+            v.LEFTCHILD, v.RIGHTCHILD = 0, 0
+        }
         nodeData[k] = jsonNode{ ID:         k,
                                 HYPERPLANE: v.HYPERPLANE,
                                 KEY:        v.KEY,
@@ -107,7 +112,8 @@ func Import(file string) {
  * Externals - Out : _3dtree, jsonTree
  *       Functions : halt
  *         Remarks : None.
- *         History : v1.0.0 - October 13, 2016 - Original release.
+ *         History : v1.1.0 - October 31, 2016 - Moded for empty LEFTCHILD and RIGHTCHILD fields
+ *                   v1.0.0 - October 13, 2016 - Original release.
  */
     if fi, err := os.Stat(file); (err != nil) || (fi.Size() == 0) {
         halt("the input file cannot be located or is empty")
@@ -123,7 +129,11 @@ func Import(file string) {
 
     _3dtree = make([]Node, jsonIn.SIZE, jsonIn.SIZE)
     for _, v := range jsonIn.XYZTREE {
-        _3dtree[v.ID] = Node{v.HYPERPLANE, v.KEY, v.COORDS, v.LEFTCHILD, v.RIGHTCHILD}
+        if v.HYPERPLANE == -1 {
+            _3dtree[v.ID] = Node{v.HYPERPLANE, v.KEY, v.COORDS, -1, -1}
+        } else {
+            _3dtree[v.ID] = Node{v.HYPERPLANE, v.KEY, v.COORDS, v.LEFTCHILD, v.RIGHTCHILD}
+        }
     }
     return
 } //end func Import
@@ -177,8 +187,8 @@ type(
         HYPERPLANE int        `json:"hyperplane"` // node data
         KEY        string     `json:"key"`
         COORDS     DataCoords `json:"coords"`
-        LEFTCHILD  int        `json:"leftchild"`
-        RIGHTCHILD int        `json:"rightchild"`
+        LEFTCHILD  int        `json:"leftchild,omitempty"`
+        RIGHTCHILD int        `json:"rightchild,omitempty"`
     }
     jsonTree struct {                             //JSON structure for the 3-d tree:
         SIZE       int        `json:"size"`
